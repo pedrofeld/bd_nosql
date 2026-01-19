@@ -8,11 +8,27 @@ datasource db {
 
 model User {
   id String @id @map("_id") @db.ObjectId @default(auto())
-  
+
   nome String
   dtNascimento DateTime?
   email String @unique
   senha Int
+
+  dtCriacao DateTime @default(now())
+  dtAtualizacao DateTime @updatedAt
+
+  posts Post[]
+}
+
+model Post {
+  id String @id @map("_id") @db.ObjectId @default(auto())
+
+  titulo String
+  conteudo String
+  curtidas Int @default(0)
+
+  autorId String @db.ObjectId
+  autor User @relation(fields: [autorId], references: [id])
 
   dtCriacao DateTime @default(now())
   dtAtualizacao DateTime @updatedAt
