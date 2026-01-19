@@ -14,6 +14,8 @@ model User {
   email String @unique
   senha Int
 
+  endereco Endereco?
+
   dtCriacao DateTime @default(now())
   dtAtualizacao DateTime @updatedAt
 
@@ -26,10 +28,23 @@ model Post {
   titulo String
   conteudo String
   curtidas Int @default(0)
+  tags Tag[]
 
   autorId String @db.ObjectId
   autor User @relation(fields: [autorId], references: [id])
 
   dtCriacao DateTime @default(now())
   dtAtualizacao DateTime @updatedAt
+}
+
+type Tag {
+  nome String
+  dtCriacao DateTime @default(now())
+}
+
+type Endereco {
+  cidade String
+  uf String
+  rua String
+  numero Int
 }
