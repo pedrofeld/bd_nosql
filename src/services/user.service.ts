@@ -8,18 +8,7 @@ export class UserService {
 
             // 2 - lógica de negócio (validações, regras, etc) + processamento
             const result = await repository.user.create({
-                data: {
-                    nome: dados.nome,
-                    email: dados.email,
-                    senha: dados.senha,
-                    endereco: {
-                        cidade: dados.endereco.cidade,
-                        uf: dados.endereco.uf,
-                        rua: dados.endereco.rua,
-                        numero: dados.endereco.numero,
-                    },
-                    dtNascimento: dados.dtNascimento,
-                }
+                data: dados,
             });
 
             // 3 - saída de dados (retorno)

@@ -1,4 +1,5 @@
-import { UserService } from "./services/user.service"
+import { UserService } from "./services/user.service";
+import "dotenv/config";
 
 console.log("Hello, world!")
 
